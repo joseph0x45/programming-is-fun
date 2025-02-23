@@ -113,12 +113,21 @@ int main() {
   if (pid == -1) {
     perror("failed to create child process:");
     return -1;
-  }
+  };
+  FILE *fd;
   if (pid == 0) {
     // inside the child process
-    int mem_free = get_mem_info();
-    printf("Free Memory: %d Kb\n", mem_free);
-    int cpu_info = get_cpu_info();
+    while (1) {
+      int mem_free = get_mem_info();
+      printf("Free Memory: %d Kb\n", mem_free);
+      int cpu_info = get_cpu_info();
+      printf("CPU usage: %d %%\n", cpu_info);
+      fd = fopen("./stop", "r");
+      if (fd) {
+        fclose(fd);
+        break;
+      }
+    }
   }
   // inside the parent process
   printf("Waiting for child");
