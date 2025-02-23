@@ -1,0 +1,10 @@
+Objectif : Écrire un programme en C qui :
+ ▰ 1. Crée un processus fils pour surveiller l'utilisation actuelle du CPU et de la mémoire.
+ ▰ 2. Le processus fils récupère ces informations toutes les 10 secondes et les enregistre dans un fichier "log.txt".
+ ▰ 3. Le programme doit gérer correctement la terminaison du processus avec un signal SIGINT (Ctrl+C).
+ ▰ 4. Un fichier "stop" peut être créé manuellement pour arrêter proprement la surveillance.
+ ▰ 5. Une alerte sonore est déclenchée si la mémoire libre descend sous un seuil défini.
+ Instructions :
+ ▰-Utiliser fork() pour créer un processus fils chargé de la surveillance.
+ ▰-Le processus fils lit les fichiers /proc/meminfo et /proc/stat pour collecter les données.
+ ▰-Le processus père attend la fin du fils et affiche un message lorsque celui-ci termine.
